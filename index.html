@@ -295,6 +295,126 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ===== README / ABOUT ===== */
+  .readme {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.5);
+  }
+  .readme-bar {
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--border);
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .readme-bar-dots {
+    display: flex;
+    gap: 6px;
+    margin-right: 4px;
+  }
+  .readme-filename {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .readme-filename .path-dim { color: var(--text-dim); font-weight: 400; }
+  .readme-stats {
+    margin-left: auto;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .readme-stats .countdown-pill {
+    color: var(--accent);
+    font-weight: 700;
+    background: var(--accent-glow);
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--accent-dim);
+  }
+  .readme-body {
+    padding: 36px 40px;
+  }
+  .readme-h {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 10px;
+    letter-spacing: 0;
+  }
+  .readme-h:first-child { margin-top: 0; }
+  .readme-h .hash {
+    color: var(--accent);
+    margin-right: 8px;
+    font-weight: 800;
+  }
+  .readme-body p {
+    color: var(--text-muted);
+    font-size: 1.04rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .readme-body p + p {
+    margin-top: 12px;
+  }
+  .readme-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: grid;
+    gap: 7px;
+  }
+  .readme-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .readme-checklist .check {
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 0.95em;
+  }
+  .readme-checklist .check.done { color: var(--accent); }
+  .readme-checklist .check.todo {
+    color: var(--accent);
+    animation: blink 1.4s steps(1) infinite;
+  }
+  .readme-checklist li.current {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .readme-checklist .here {
+    color: var(--accent);
+    font-size: 0.82em;
+    font-weight: 700;
+    margin-left: 6px;
+    letter-spacing: 0.04em;
+  }
+  .readme-body p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .readme-body .date-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .readme-body { padding: 26px 22px; }
+    .readme-stats span:not(.countdown-pill) { display: none; }
+  }
+
   /* ===== SECTION HEADER ===== */
   .section {
     padding: 80px 0;
@@ -905,6 +1025,57 @@
     </div>
   </section>
 
+  <!-- ABOUT / README -->
+  <section class="section container" id="about">
+    <div class="section-marker">
+      <span class="num">00</span>
+      <span>about.md</span>
+    </div>
+    <h2><span class="accent">whoami</span> — про автора.</h2>
+    <p class="section-desc">Контекст, без которого числа выше — просто числа.</p>
+
+    <div class="readme">
+      <div class="readme-bar">
+        <span class="readme-bar-dots">
+          <span class="term-dot"></span>
+          <span class="term-dot"></span>
+          <span class="term-dot"></span>
+        </span>
+        <span class="readme-filename"><span class="path-dim">~/</span>about.md</span>
+        <span class="readme-stats">
+          <span>edited:</span>
+          <span class="countdown-pill" id="bday-countdown">—</span>
+        </span>
+      </div>
+      <div class="readme-body">
+        <h3 class="readme-h"><span class="hash">#</span>whoami</h3>
+        <p>
+          <span class="date-arrow">21.06.2026.</span> В этот день мне будет <strong>35</strong>. Это, как мне сказали, классический возраст для кризиса среднего возраста.
+        </p>
+        <p>
+          Мой, кстати, уже в самом разгаре — и <strong>заканчиваться не планирует</strong>.
+        </p>
+
+        <h3 class="readme-h"><span class="hash">#</span>the_plan</h3>
+        <p>К 35 я уже собрал стандартный набор хобби среднего возраста:</p>
+        <ul class="readme-checklist">
+          <li><span class="check done">[x]</span> сноуборд</li>
+          <li><span class="check done">[x]</span> велосипед</li>
+          <li><span class="check done">[x]</span> ролики</li>
+          <li><span class="check done">[x]</span> походы в горы</li>
+          <li><span class="check done">[x]</span> коллекция винила</li>
+          <li><span class="check done">[x]</span> лего</li>
+          <li class="current"><span class="check todo">[ ]</span> 3D-принтер <span class="here">← мы здесь</span></li>
+        </ul>
+
+        <h3 class="readme-h"><span class="hash">#</span>disclaimer</h3>
+        <p>
+          Если ты переведёшь даже доллар — ты официально становишься <strong>со-инвестором моего кризиса</strong>. Пути назад нет.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- PROGRESS -->
   <section class="section container" id="progress">
     <div class="section-marker">
@@ -1027,6 +1198,7 @@ const CONFIG = {
   // СБОР
   amountRaised: 0,             // ← обновляй это число по мере поступлений
   goal: 799,                   // главная цель: Bambu Lab P2S Combo ($799)
+  birthday: '2026-06-21',      // дата дня рождения для счётчика (YYYY-MM-DD)
 
   // ОПЦИЯ: добавь ?raised=450 в URL, чтобы переопределить amountRaised на лету.
   // Удобно, если хочешь обновить число без правки файла.
@@ -1278,6 +1450,22 @@ const CONFIG = {
   // Status text variant
   if (CONFIG.amountRaised >= CONFIG.goal) {
     document.getElementById('status-text').textContent = 'goal_reached';
+  }
+
+  // Birthday countdown
+  try {
+    const bday = new Date(CONFIG.birthday + 'T00:00:00');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffDays = Math.round((bday - today) / (1000 * 60 * 60 * 24));
+    let cd;
+    if (diffDays > 1) cd = `T−${diffDays} days`;
+    else if (diffDays === 1) cd = `T−1 day`;
+    else if (diffDays === 0) cd = `🎂 today`;
+    else cd = `bday: +${Math.abs(diffDays)}d ago`;
+    document.getElementById('bday-countdown').textContent = cd;
+  } catch (e) {
+    document.getElementById('bday-countdown').textContent = '—';
   }
 })();
 </script>
