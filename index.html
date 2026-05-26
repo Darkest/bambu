@@ -143,6 +143,38 @@
     box-shadow: 0 0 0 4px var(--accent-glow), 0 0 12px var(--accent);
     animation: pulse 2s ease-in-out infinite;
   }
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .lang-switch {
+    display: flex;
+    border: 1px solid var(--border-bright);
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .lang-switch button {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+  }
+  .lang-switch button:hover { color: var(--text); }
+  .lang-switch button.active {
+    background: var(--accent);
+    color: #000;
+  }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.6; transform: scale(0.9); }
@@ -955,9 +987,15 @@
     <div class="logo">
       <span class="logo-bracket">{</span><span>print.the.future</span><span class="logo-bracket">}</span><span class="logo-cursor"></span>
     </div>
-    <div class="status">
-      <span class="status-dot"></span>
-      <span id="status-text">accepting_donations</span>
+    <div class="nav-controls">
+      <div class="status">
+        <span class="status-dot"></span>
+        <span id="status-text" data-i18n="nav.status">accepting_donations</span>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -999,26 +1037,26 @@
       </div>
       <div class="terminal-body">
         <div><span class="term-prompt">➜</span> <span class="term-cmd">./request-printer.sh --model="bambu-lab" --reason="birthday"</span></div>
-        <div class="term-out">> запуск сбора...</div>
-        <div class="term-out">> цель установлена ✓ уровни настроены ✓</div>
+        <div class="term-out" data-i18n="terminal.line1">> запуск сбора...</div>
+        <div class="term-out" data-i18n="terminal.line2">> цель установлена ✓ уровни настроены ✓</div>
         <div><span class="term-success">> status: ready_to_print</span></div>
       </div>
     </div>
 
-    <h1>
+    <h1 data-i18n="hero.h1">
       помоги мне <span class="accent">print()</span><br />
       <span class="dim">мой</span> день рождения.
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="hero.sub">
       Собираю на <strong>3D-принтер Bambu Lab</strong> ко дню рождения. Каждый взнос двигает шкалу — и каждая планка открывает модель получше. Без комиссий платформ, без посредников — только прямые переводы.
     </p>
 
     <div class="cta-row">
-      <a href="#contribute" class="btn primary">
+      <a href="#contribute" class="btn primary" data-i18n="hero.ctaPrimary">
         <span>поддержать</span>
         <span class="btn-arrow">→</span>
       </a>
-      <a href="#tiers" class="btn">
+      <a href="#tiers" class="btn" data-i18n="hero.ctaSecondary">
         <span>к уровням</span>
         <span class="btn-arrow">↓</span>
       </a>
@@ -1031,8 +1069,8 @@
       <span class="num">00</span>
       <span>about.md</span>
     </div>
-    <h2><span class="accent">whoami</span> — про меня.</h2>
-    <p class="section-desc">Контекст, без которого числа выше — просто числа.</p>
+    <h2 data-i18n="about.h2"><span class="accent">whoami</span> — про меня.</h2>
+    <p class="section-desc" data-i18n="about.desc">Контекст, без которого числа выше — просто числа.</p>
 
     <div class="readme">
       <div class="readme-bar">
@@ -1043,22 +1081,22 @@
         </span>
         <span class="readme-filename"><span class="path-dim">~/</span>about.md</span>
         <span class="readme-stats">
-          <span>edited:</span>
+          <span data-i18n="about.editedLabel">edited:</span>
           <span class="countdown-pill" id="bday-countdown">—</span>
         </span>
       </div>
       <div class="readme-body">
         <h3 class="readme-h"><span class="hash">#</span>whoami</h3>
-        <p>
+        <p data-i18n="about.whoamiP1">
           <span class="date-arrow">21.06.2026.</span> В этот день мне будет <strong>35</strong>. Это, как мне сказали, классический возраст для кризиса среднего возраста.
         </p>
-        <p>
+        <p data-i18n="about.whoamiP2">
           Мой, кстати, уже в самом разгаре — и <strong>заканчиваться не планирует</strong>.
         </p>
 
         <h3 class="readme-h"><span class="hash">#</span>the_plan</h3>
-        <p>К 35 я уже собрал стандартный набор хобби среднего возраста:</p>
-        <ul class="readme-checklist">
+        <p data-i18n="about.thePlanIntro">К 35 я уже собрал стандартный набор хобби среднего возраста:</p>
+        <ul class="readme-checklist" data-i18n="about.thePlanList">
           <li><span class="check done">[x]</span> сноуборд</li>
           <li><span class="check done">[x]</span> велосипед</li>
           <li><span class="check done">[x]</span> ролики</li>
@@ -1069,7 +1107,7 @@
         </ul>
 
         <h3 class="readme-h"><span class="hash">#</span>disclaimer</h3>
-        <p>
+        <p data-i18n="about.disclaimer">
           Если ты переведёшь даже доллар — ты официально становишься <strong>со-инвестором моего кризиса</strong>. Пути назад нет.
         </p>
       </div>
@@ -1082,8 +1120,8 @@
       <span class="num">01</span>
       <span>current_progress</span>
     </div>
-    <h2>Сборка <span class="accent">в процессе</span>.</h2>
-    <p class="section-desc">Актуальный статус сбора. Шкала растёт с каждым взносом.</p>
+    <h2 data-i18n="progress.h2">Сборка <span class="accent">в процессе</span>.</h2>
+    <p class="section-desc" data-i18n="progress.desc">Актуальный статус сбора. Шкала растёт с каждым взносом.</p>
 
     <div class="progress-card">
       <div class="progress-header">
@@ -1093,15 +1131,15 @@
         </div>
         <div class="progress-stats">
           <div class="stat">
-            <div class="stat-label">собрано</div>
+            <div class="stat-label" data-i18n="progress.statFunded">собрано</div>
             <div class="stat-value mono"><span class="accent" id="percent">0</span>%</div>
           </div>
           <div class="stat">
-            <div class="stat-label">осталось</div>
+            <div class="stat-label" data-i18n="progress.statRemaining">осталось</div>
             <div class="stat-value mono" id="remaining">$0</div>
           </div>
           <div class="stat">
-            <div class="stat-label">текущая_модель</div>
+            <div class="stat-label" data-i18n="progress.statTier">текущая_модель</div>
             <div class="stat-value mono" id="current-tier-name">—</div>
           </div>
         </div>
@@ -1109,7 +1147,7 @@
 
       <div class="bar-wrap">
         <div class="bar-meta mono">
-          <span>// прогресс</span>
+          <span data-i18n="progress.barLabel">// прогресс</span>
           <span id="bar-status">ждём первый взнос</span>
         </div>
         <div class="bar">
@@ -1130,8 +1168,8 @@
       <span class="num">02</span>
       <span>tier_ladder</span>
     </div>
-    <h2>Что <span class="accent">открывает</span> каждый уровень.</h2>
-    <p class="section-desc">Сбор растёт вместе с моделью. Достиг планки — этот принтер становится реальной целью. Достиг следующей — апгрейд.</p>
+    <h2 data-i18n="tiers.h2">Что <span class="accent">открывает</span> каждый уровень.</h2>
+    <p class="section-desc" data-i18n="tiers.desc">Сбор растёт вместе с моделью. Достиг планки — этот принтер становится реальной целью. Достиг следующей — апгрейд.</p>
 
     <div class="tiers" id="tiers-grid"></div>
   </section>
@@ -1142,12 +1180,12 @@
       <span class="num">03</span>
       <span>contribution_methods</span>
     </div>
-    <h2>Как <span class="accent">поддержать</span>.</h2>
-    <p class="section-desc">Прямой перевод — без комиссий и посредников. Нажми на любое поле, чтобы скопировать. Даже немного — это важно.</p>
+    <h2 data-i18n="pay.h2">Как <span class="accent">поддержать</span>.</h2>
+    <p class="section-desc" data-i18n="pay.desc">Прямой перевод — без комиссий и посредников. Нажми на любое поле, чтобы скопировать. Даже немного — это важно.</p>
 
     <div class="pay-notice">
       <span class="pay-notice-icon">!</span>
-      <div class="pay-notice-text">
+      <div class="pay-notice-text" data-i18n="pay.notice">
         <strong>// важно:</strong> в комментарии к переводу укажи <span class="pay-notice-tag">Bamboo</span> — так я смогу отличить твой взнос от других переводов и засчитать его в копилку.
       </div>
     </div>
@@ -1162,11 +1200,11 @@
         <span class="num">04</span>
         <span>the_thanks</span>
       </div>
-      <h2>Всем, кто <span class="accent">поможет</span>.</h2>
-      <p>
+      <h2 data-i18n="thanks.h2">Всем, кто <span class="accent">поможет</span>.</h2>
+      <p data-i18n="thanks.body">
         Даже если просто скинул немного или поделился ссылкой с одним человеком — ты делаешь хобби-проект реальным. Когда принтер приедет, первая печать будет для тебя. Кидай модель, идею, что угодно. Обещаю.
       </p>
-      <div class="thanks-signature mono">// с благодарностью — <span id="signature-name">имя</span></div>
+      <div class="thanks-signature mono"><span data-i18n="thanks.signaturePre">// с благодарностью — </span><span id="signature-name">имя</span></div>
     </div>
   </section>
 </main>
@@ -1174,7 +1212,7 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <span style="color:var(--text-muted);">© <span id="year"></span></span> &nbsp;·&nbsp; собрано на html, css и любви
+      <span style="color:var(--text-muted);">© <span id="year"></span></span> &nbsp;·&nbsp; <span data-i18n="footer.built">собрано на html, css и любви</span>
     </div>
     <div>
       last_updated: <span id="last-updated">—</span>
@@ -1182,7 +1220,7 @@
   </div>
 </footer>
 
-<div class="toast" id="toast">скопировано ✓</div>
+<div class="toast" id="toast" data-i18n="toast.copied">скопировано ✓</div>
 
 <script>
 /* ============================================================
@@ -1190,101 +1228,285 @@
    ============================================================ */
 
 const CONFIG = {
-  // ТВОИ ДАННЫЕ
-  name: 'Дмитрий',             // отображается в подписи в блоке «спасибо»
-  currencySymbol: '$',         // '$', '€', '₾' (лари) и т.д.
-  currencyCode: 'USD',         // только для контекста
+  // ТВОИ ДАННЫЕ — двуязычные значения через {ru, en}
+  name: { ru: 'Дмитрий', en: 'Dmitrii' },
+  currencySymbol: '$',
+  currencyCode: 'USD',
+  defaultLang: 'ru',           // язык по умолчанию: 'ru' или 'en'
 
   // СБОР
   amountRaised: 0,             // ← обновляй это число по мере поступлений
   goal: 799,                   // главная цель: Bambu Lab P2S Combo ($799)
   birthday: '2026-06-21',      // дата дня рождения для счётчика (YYYY-MM-DD)
 
-  // ОПЦИЯ: добавь ?raised=450 в URL, чтобы переопределить amountRaised на лету.
-  // Удобно, если хочешь обновить число без правки файла.
+  // ОПЦИЯ: ?raised=450 в URL — переопределяет amountRaised на лету.
+  // ОПЦИЯ: ?lang=en — открыть сразу в английской версии.
 
-  // TIERS — printer ladder (sorted ascending by price)
-  // 'price' is the cumulative amount needed to "unlock" that tier.
+  // TIERS — двуязычные desc и spec-pills
   tiers: [
     {
       model: 'A1 Mini',
       price: 299,
-      desc: 'Компактный старт. Хорошее качество печати, простая сборка, отлично для первого принтера.',
-      specs: ['180×180×180mm', 'AMS Lite', 'для_новичков']
+      desc: {
+        ru: 'Компактный старт. Хорошее качество печати, простая сборка, отлично для первого принтера.',
+        en: 'Compact starter. Solid prints, easy assembly, perfect for first-time owners.'
+      },
+      specs: ['180×180×180mm', 'AMS Lite', { ru: 'для_новичков', en: 'beginner_friendly' }]
     },
     {
       model: 'A1',
       price: 399,
-      desc: 'Полноразмерный открытый принтер. Качество печати как у моделей втрое дороже.',
-      specs: ['256×256×256mm', 'AMS Lite combo', 'авто-калибровка']
+      desc: {
+        ru: 'Полноразмерный открытый принтер. Качество печати как у моделей втрое дороже.',
+        en: 'Full-size open-frame. Print quality matches printers costing 3× more.'
+      },
+      specs: ['256×256×256mm', 'AMS Lite combo', { ru: 'авто-калибровка', en: 'auto-calibration' }]
     },
     {
       model: 'P2S',
       price: 549,
-      desc: 'Закрытая камера, готов к ABS/ASA. Рабочая лошадка — соло-версия.',
-      specs: ['enclosed', '256³ build', 'AI_детект_сбоев']
+      desc: {
+        ru: 'Закрытая камера, готов к ABS/ASA. Рабочая лошадка — соло-версия.',
+        en: 'Enclosed chamber, ready for ABS/ASA. The everyday workhorse — solo.'
+      },
+      specs: ['enclosed', '256³ build', { ru: 'AI_детект_сбоев', en: 'AI_failure_detect' }]
     },
     {
       model: 'P2S Combo',
       price: 799,
-      desc: 'P2S + AMS 2 Pro. Четырёхцветная мульти-печать, встроенная сушка филамента. Цель.',
-      specs: ['enclosed', 'AMS_2_Pro', '4-color print', '⭐ цель']
+      desc: {
+        ru: 'P2S + AMS 2 Pro. Четырёхцветная мульти-печать, встроенная сушка филамента. Цель.',
+        en: 'P2S + AMS 2 Pro. Four-color multi-material, built-in filament drying. The goal.'
+      },
+      specs: ['enclosed', 'AMS_2_Pro', '4-color print', { ru: '⭐ цель', en: '⭐ goal' }]
     },
     {
       model: 'X1 Carbon',
       price: 1199,
-      desc: 'LIDAR, печать карбоном. Растянутая цель — флагман.',
-      specs: ['LIDAR', 'CF-ready', 'флагман']
+      desc: {
+        ru: 'LIDAR, печать карбоном. Растянутая цель — флагман.',
+        en: 'LIDAR, carbon-fiber capable. Stretch goal — the flagship.'
+      },
+      specs: ['LIDAR', 'CF-ready', { ru: 'флагман', en: 'flagship' }]
     },
     {
       model: 'H2D',
       price: 1799,
-      desc: 'Два сопла, больше зона печати, совместим с лазерным модулем. Мечта.',
+      desc: {
+        ru: 'Два сопла, больше зона печати, совместим с лазерным модулем. Мечта.',
+        en: 'Dual-nozzle, larger build volume, laser-module compatible. The dream.'
+      },
       specs: ['dual_nozzle', '350×320×325mm', 'laser_compatible']
     }
   ],
 
-  // PAYMENT METHODS — fill in your real details ↓
-  // Add or remove cards freely. Delete the entire object to hide a card.
+  // PAYMENT METHODS — реальные данные, двуязычные подписи через {ru, en}
   payment: [
     {
-      name: 'Тинькофф · СБП',
       icon: 'Т',
-      tag: 'Россия · мгновенно',
+      name: { ru: 'Тинькофф · СБП', en: 'Tinkoff · SBP' },
+      tag:  { ru: 'Россия · мгновенно', en: 'Russia · instant' },
       rows: [
-        { label: 'получатель', value: 'Дмитрий П.' },
-        { label: 'банк',       value: 'Т-Банк (Тинькофф)' },
-        { label: 'телефон',    value: '+7 926 604 10 71' }
+        { label: 'recipient', value: { ru: 'Дмитрий П.', en: 'Dmitrii P.' } },
+        { label: 'bank',      value: { ru: 'Т-Банк (Тинькофф)', en: 'T-Bank (Tinkoff)' } },
+        { label: 'phone',     value: '+7 926 604 10 71' }
       ]
     },
     {
-      name: 'TBC Bank',
       icon: 'TBC',
-      tag: 'банк (Грузия)',
+      name: 'TBC Bank',
+      tag:  { ru: 'банк (Грузия)', en: 'Georgian bank' },
       rows: [
-        { label: 'получатель', value: 'Pevunov Dmitrii' },
-        { label: 'iban',       value: 'GE37 TB79 7014 5068 1000 23' }
+        { label: 'recipient', value: 'Pevunov Dmitrii' },
+        { label: 'iban',      value: 'GE37 TB79 7014 5068 1000 23' }
       ]
     },
     {
-      name: 'Bank of Georgia',
       icon: 'BOG',
-      tag: 'банк (Грузия)',
+      name: 'Bank of Georgia',
+      tag:  { ru: 'банк (Грузия)', en: 'Georgian bank' },
       rows: [
-        { label: 'получатель', value: 'Pevunov Dmitrii' },
-        { label: 'iban',       value: 'GE78 BG00 0000 0053 8459 016' }
+        { label: 'recipient', value: 'Pevunov Dmitrii' },
+        { label: 'iban',      value: 'GE78 BG00 0000 0053 8459 016' }
       ]
     },
     {
-      name: 'USDT (TRC-20)',
       icon: '₮',
-      tag: 'крипта · Binance',
+      name: 'USDT (TRC-20)',
+      tag:  { ru: 'крипта · Binance', en: 'crypto · Binance' },
       rows: [
-        { label: 'сеть',  value: 'TRON (TRC-20)' },
-        { label: 'адрес', value: 'TLcmerxV4CoB9XkC6pqDTokqWGuC52ZrCF' }
+        { label: 'network', value: 'TRON (TRC-20)' },
+        { label: 'address', value: 'TLcmerxV4CoB9XkC6pqDTokqWGuC52ZrCF' }
       ]
     }
   ]
+};
+
+/* ============================================================
+   ▸ I18N — переводы интерфейса (правь только текст) ◂
+   ============================================================ */
+
+const I18N = {
+  ru: {
+    'doc.title': 'print.the.future() — день рождения и Bambu Lab',
+    'doc.desc': 'Сбор на 3D-принтер Bambu Lab ко дню рождения. Каждый взнос открывает модель получше.',
+
+    'nav.status': 'accepting_donations',
+    'nav.goalReached': 'goal_reached',
+
+    'terminal.line1': '> запуск сбора...',
+    'terminal.line2': '> цель установлена ✓ уровни настроены ✓',
+
+    'hero.h1': 'помоги мне <span class="accent">print()</span><br /><span class="dim">мой</span> день рождения.',
+    'hero.sub': 'Собираю на <strong>3D-принтер Bambu Lab</strong> ко дню рождения. Каждый взнос двигает шкалу — и каждая планка открывает модель получше. Без комиссий платформ, без посредников — только прямые переводы.',
+    'hero.ctaPrimary': '<span>поддержать</span><span class="btn-arrow">→</span>',
+    'hero.ctaSecondary': '<span>к уровням</span><span class="btn-arrow">↓</span>',
+
+    'about.h2': '<span class="accent">whoami</span> — про меня.',
+    'about.desc': 'Контекст, без которого числа выше — просто числа.',
+    'about.editedLabel': 'edited:',
+    'about.whoamiP1': '<span class="date-arrow">21.06.2026.</span> В этот день мне будет <strong>35</strong>. Это, как мне сказали, классический возраст для кризиса среднего возраста.',
+    'about.whoamiP2': 'Мой, кстати, уже в самом разгаре — и <strong>заканчиваться не планирует</strong>.',
+    'about.thePlanIntro': 'К 35 я уже собрал стандартный набор хобби среднего возраста:',
+    'about.thePlanList':
+      '<li><span class="check done">[x]</span> сноуборд</li>' +
+      '<li><span class="check done">[x]</span> велосипед</li>' +
+      '<li><span class="check done">[x]</span> ролики</li>' +
+      '<li><span class="check done">[x]</span> походы в горы</li>' +
+      '<li><span class="check done">[x]</span> коллекция винила</li>' +
+      '<li><span class="check done">[x]</span> лего</li>' +
+      '<li class="current"><span class="check todo">[ ]</span> 3D-принтер <span class="here">← мы здесь</span></li>',
+    'about.disclaimer': 'Если ты переведёшь даже доллар — ты официально становишься <strong>со-инвестором моего кризиса</strong>. Пути назад нет.',
+
+    'progress.h2': 'Сборка <span class="accent">в процессе</span>.',
+    'progress.desc': 'Актуальный статус сбора. Шкала растёт с каждым взносом.',
+    'progress.statFunded': 'собрано',
+    'progress.statRemaining': 'осталось',
+    'progress.statTier': 'текущая_модель',
+    'progress.barLabel': '// прогресс',
+
+    'progress.barAwait': 'ждём первый взнос',
+    'progress.barGoalReached': 'goal_reached ✓ — каждый $ сверху идёт на апгрейд',
+    'progress.barRemaining': 'ещё {x} до цели',
+    'progress.annDefaultModel': 'цель:',
+    'progress.annDefaultText': 'внеси взнос ниже, чтобы открыть первый уровень',
+    'progress.annFirst': 'первый уровень:',
+    'progress.annFirstText': '<span class="accent">{model}</span> открывается на {price}.',
+    'progress.annCurrent': 'доступно сейчас:',
+    'progress.annCurrentText': '<span class="accent">{model}</span> — следующий уровень ({next}) на {price}.',
+    'progress.annMax': 'макс. уровень достигнут:',
+    'progress.annMaxText': '<span class="accent">{model}</span> — каждый следующий $ идёт на филамент и AMS.',
+    'progress.noneYet': 'пока_нет',
+
+    'tiers.h2': 'Что <span class="accent">открывает</span> каждый уровень.',
+    'tiers.desc': 'Сбор растёт вместе с моделью. Достиг планки — этот принтер становится реальной целью. Достиг следующей — апгрейд.',
+    'tier.locked': 'закрыт',
+    'tier.unlocked': 'открыт',
+    'tier.current': 'цель',
+
+    'pay.h2': 'Как <span class="accent">поддержать</span>.',
+    'pay.desc': 'Прямой перевод — без комиссий и посредников. Нажми на любое поле, чтобы скопировать. Даже немного — это важно.',
+    'pay.notice': '<strong>// важно:</strong> в комментарии к переводу укажи <span class="pay-notice-tag">Bamboo</span> — так я смогу отличить твой взнос от других переводов и засчитать его в копилку.',
+    'pay.label.recipient': 'получатель',
+    'pay.label.bank': 'банк',
+    'pay.label.phone': 'телефон',
+    'pay.label.iban': 'iban',
+    'pay.label.network': 'сеть',
+    'pay.label.address': 'адрес',
+    'pay.copyAria': 'скопировать',
+
+    'thanks.h2': 'Всем, кто <span class="accent">поможет</span>.',
+    'thanks.body': 'Даже если просто скинул немного или поделился ссылкой с одним человеком — ты делаешь хобби-проект реальным. Когда принтер приедет, первая печать будет для тебя. Кидай модель, идею, что угодно. Обещаю.',
+    'thanks.signaturePre': '// с благодарностью — ',
+
+    'footer.built': 'собрано на html, css и любви',
+    'toast.copied': 'скопировано ✓',
+
+    'cd.units': 'days',
+    'cd.unitsOne': 'day',
+    'cd.today': '🎂 today',
+    'cd.passed': 'bday: +{d}d ago'
+  },
+  en: {
+    'doc.title': 'print.the.future() — help me get a Bambu Lab',
+    'doc.desc': 'Birthday fundraiser to buy a Bambu Lab 3D printer. Every contribution unlocks a better model.',
+
+    'nav.status': 'accepting_donations',
+    'nav.goalReached': 'goal_reached',
+
+    'terminal.line1': '> initializing fundraiser...',
+    'terminal.line2': '> goal set ✓ tier ladder configured ✓',
+
+    'hero.h1': 'help me <span class="accent">print()</span><br /><span class="dim">my</span> birthday.',
+    'hero.sub': 'Raising funds for a <strong>Bambu Lab 3D printer</strong> for my birthday. Every contribution moves the meter — and every milestone unlocks a better model. No platform fees, no middlemen, just direct transfers.',
+    'hero.ctaPrimary': '<span>contribute</span><span class="btn-arrow">→</span>',
+    'hero.ctaSecondary': '<span>view tiers</span><span class="btn-arrow">↓</span>',
+
+    'about.h2': '<span class="accent">whoami</span> — about me.',
+    'about.desc': 'Context, without which the numbers above are just numbers.',
+    'about.editedLabel': 'edited:',
+    'about.whoamiP1': '<span class="date-arrow">21.06.2026.</span> On that day I turn <strong>35</strong>. That, I\u2019m told, is the classic age for a midlife crisis.',
+    'about.whoamiP2': 'Mine, by the way, is already in full swing — and <strong>has no plans to end</strong>.',
+    'about.thePlanIntro': 'By 35 I\u2019ve already collected the standard set of midlife-crisis hobbies:',
+    'about.thePlanList':
+      '<li><span class="check done">[x]</span> snowboard</li>' +
+      '<li><span class="check done">[x]</span> bicycle</li>' +
+      '<li><span class="check done">[x]</span> rollerblades</li>' +
+      '<li><span class="check done">[x]</span> mountain hiking</li>' +
+      '<li><span class="check done">[x]</span> vinyl collection</li>' +
+      '<li><span class="check done">[x]</span> lego</li>' +
+      '<li class="current"><span class="check todo">[ ]</span> 3D printer <span class="here">← we are here</span></li>',
+    'about.disclaimer': 'Transfer even a dollar and you officially become a <strong>co-investor in my crisis</strong>. No going back.',
+
+    'progress.h2': 'The <span class="accent">build</span> so far.',
+    'progress.desc': 'Live status of the fundraiser. The bar fills as contributions come in.',
+    'progress.statFunded': 'funded',
+    'progress.statRemaining': 'remaining',
+    'progress.statTier': 'current_tier',
+    'progress.barLabel': '// progress',
+
+    'progress.barAwait': 'awaiting first contribution',
+    'progress.barGoalReached': 'goal_reached ✓ — every $ above goes to upgrades',
+    'progress.barRemaining': '{x} until goal',
+    'progress.annDefaultModel': 'target:',
+    'progress.annDefaultText': 'contribute below to unlock the first tier',
+    'progress.annFirst': 'first tier:',
+    'progress.annFirstText': '<span class="accent">{model}</span> unlocks at {price}.',
+    'progress.annCurrent': 'currently affordable:',
+    'progress.annCurrentText': '<span class="accent">{model}</span> — next tier ({next}) at {price}.',
+    'progress.annMax': 'max tier reached:',
+    'progress.annMaxText': '<span class="accent">{model}</span> — every extra $ goes to filament & AMS.',
+    'progress.noneYet': 'none_yet',
+
+    'tiers.h2': 'What each level <span class="accent">unlocks</span>.',
+    'tiers.desc': 'The fundraiser scales with the model. Hit a tier, that printer becomes the realistic pick. Hit the next, we upgrade.',
+    'tier.locked': 'locked',
+    'tier.unlocked': 'unlocked',
+    'tier.current': 'goal',
+
+    'pay.h2': 'Ways to <span class="accent">contribute</span>.',
+    'pay.desc': 'Direct transfer — no fees, no middlemen. Tap any field to copy. Even a small amount counts.',
+    'pay.notice': '<strong>// important:</strong> in the transfer memo write <span class="pay-notice-tag">Bamboo</span> — so I can tell your contribution apart from other transfers and count it.',
+    'pay.label.recipient': 'recipient',
+    'pay.label.bank': 'bank',
+    'pay.label.phone': 'phone',
+    'pay.label.iban': 'iban',
+    'pay.label.network': 'network',
+    'pay.label.address': 'address',
+    'pay.copyAria': 'copy',
+
+    'thanks.h2': 'To everyone who <span class="accent">helps</span>.',
+    'thanks.body': 'Whether you toss in a few bucks or just share this with one person — you\u2019re making a hobby project real. When the printer arrives, the first thing I print is for you. Send me a model, an idea, anything. Promise.',
+    'thanks.signaturePre': '// with gratitude — ',
+
+    'footer.built': 'built with html, css & love',
+    'toast.copied': 'copied ✓',
+
+    'cd.units': 'days',
+    'cd.unitsOne': 'day',
+    'cd.today': '🎂 today',
+    'cd.passed': 'bday: +{d}d ago'
+  }
 };
 
 /* ============================================================
@@ -1292,181 +1514,249 @@ const CONFIG = {
    ============================================================ */
 
 (function() {
-  // URL override for ?raised=NNN
+  // ----- URL params -----
   const params = new URLSearchParams(window.location.search);
   const urlRaised = params.get('raised');
   if (urlRaised !== null && !isNaN(parseFloat(urlRaised))) {
     CONFIG.amountRaised = parseFloat(urlRaised);
   }
+  const urlLang = params.get('lang');
+  let LANG = (urlLang === 'en' || urlLang === 'ru') ? urlLang : CONFIG.defaultLang;
 
+  // ----- Helpers -----
+  const loc = (v, lang) => (v && typeof v === 'object' && (v.ru !== undefined || v.en !== undefined)) ? v[lang] : v;
+  const t = (key) => I18N[LANG][key] !== undefined ? I18N[LANG][key] : (I18N.ru[key] || key);
   const fmt = (n) => CONFIG.currencySymbol + n.toLocaleString('en-US');
 
-  // Determine current tier
+  // ----- Tier logic -----
   const sortedTiers = [...CONFIG.tiers].sort((a, b) => a.price - b.price);
-  let currentTier = null;
-  let nextTier = null;
-  for (let i = 0; i < sortedTiers.length; i++) {
-    if (CONFIG.amountRaised >= sortedTiers[i].price) {
-      currentTier = sortedTiers[i];
-    } else if (!nextTier) {
-      nextTier = sortedTiers[i];
+  function computeTiers() {
+    let cur = null, nxt = null;
+    for (let i = 0; i < sortedTiers.length; i++) {
+      if (CONFIG.amountRaised >= sortedTiers[i].price) cur = sortedTiers[i];
+      else if (!nxt) nxt = sortedTiers[i];
+    }
+    return { cur, nxt };
+  }
+
+  // ----- Renderers (called on load AND on lang switch) -----
+  function renderStatic() {
+    document.documentElement.lang = LANG;
+    document.title = t('doc.title');
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', t('doc.desc'));
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.dataset.i18n;
+      const val = I18N[LANG][k];
+      if (val === undefined) return;
+      if (el.tagName === 'UL') el.innerHTML = val;
+      else el.innerHTML = val;
+    });
+
+    // Lang switch buttons active state
+    document.querySelectorAll('.lang-switch button').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === LANG);
+    });
+  }
+
+  function renderProgress() {
+    const { cur, nxt } = computeTiers();
+    document.getElementById('raised-currency').textContent = CONFIG.currencySymbol;
+    document.getElementById('raised-amount').textContent = CONFIG.amountRaised.toLocaleString('en-US');
+    document.getElementById('goal-amount').textContent = fmt(CONFIG.goal);
+
+    const percent = Math.min(100, (CONFIG.amountRaised / CONFIG.goal) * 100);
+    document.getElementById('percent').textContent = percent.toFixed(1).replace(/\.0$/, '');
+    const remaining = Math.max(0, CONFIG.goal - CONFIG.amountRaised);
+    document.getElementById('remaining').textContent = fmt(remaining);
+    document.getElementById('current-tier-name').innerHTML = cur
+      ? cur.model.replace(/ /g, '_').toLowerCase()
+      : `<span style="color:var(--text-dim);">${t('progress.noneYet')}</span>`;
+
+    setTimeout(() => {
+      document.getElementById('bar-fill').style.width = percent + '%';
+    }, 200);
+
+    // Bar status
+    let barStatus = t('progress.barAwait');
+    if (CONFIG.amountRaised >= CONFIG.goal) barStatus = t('progress.barGoalReached');
+    else if (CONFIG.amountRaised > 0) barStatus = t('progress.barRemaining').replace('{x}', fmt(remaining));
+    document.getElementById('bar-status').textContent = barStatus;
+
+    // Annotation
+    const am = document.getElementById('annotation-model');
+    const at = document.getElementById('annotation-text');
+    if (cur && nxt) {
+      am.textContent = t('progress.annCurrent');
+      at.innerHTML = t('progress.annCurrentText')
+        .replace('{model}', cur.model)
+        .replace('{next}', nxt.model)
+        .replace('{price}', fmt(nxt.price));
+    } else if (cur && !nxt) {
+      am.textContent = t('progress.annMax');
+      at.innerHTML = t('progress.annMaxText').replace('{model}', cur.model);
+    } else if (nxt) {
+      am.textContent = t('progress.annFirst');
+      at.innerHTML = t('progress.annFirstText')
+        .replace('{model}', nxt.model)
+        .replace('{price}', fmt(nxt.price));
+    } else {
+      am.textContent = t('progress.annDefaultModel');
+      at.textContent = t('progress.annDefaultText');
+    }
+
+    // nav status text
+    document.getElementById('status-text').textContent =
+      CONFIG.amountRaised >= CONFIG.goal ? t('nav.goalReached') : t('nav.status');
+  }
+
+  function renderTiers() {
+    const { cur } = computeTiers();
+    const grid = document.getElementById('tiers-grid');
+    grid.innerHTML = '';
+    sortedTiers.forEach((tier, i) => {
+      const isUnlocked = CONFIG.amountRaised >= tier.price;
+      const isCurrent = cur && tier.price === cur.price;
+      let cls = 'tier', badge = t('tier.locked');
+      if (isCurrent) { cls += ' current'; badge = t('tier.current'); }
+      else if (isUnlocked) { cls += ' unlocked'; badge = t('tier.unlocked'); }
+      else { cls += ' locked'; }
+
+      const specsHtml = tier.specs.map(s => `<span class="spec-pill">${loc(s, LANG)}</span>`).join('');
+      const card = document.createElement('div');
+      card.className = cls;
+      card.innerHTML = `
+        <div class="tier-head">
+          <span class="tier-index mono">[ ${String(i+1).padStart(2,'0')} ]</span>
+          <span class="tier-badge">${badge}</span>
+        </div>
+        <div class="tier-model">${tier.model}</div>
+        <div class="tier-price"><span class="currency">${CONFIG.currencySymbol}</span>${tier.price.toLocaleString('en-US')}</div>
+        <div class="tier-desc">${loc(tier.desc, LANG)}</div>
+        <div class="tier-specs">${specsHtml}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderPayment() {
+    const grid = document.getElementById('pay-grid');
+    grid.innerHTML = '';
+    const copyAria = t('pay.copyAria');
+    CONFIG.payment.forEach((method) => {
+      const card = document.createElement('div');
+      card.className = 'pay-card';
+      const rows = method.rows.map(r => {
+        const label = t('pay.label.' + r.label) || r.label;
+        const value = loc(r.value, LANG);
+        return `
+          <div class="pay-row">
+            <span class="pay-row-label">${label}</span>
+            <span class="pay-row-value">${value}</span>
+            <button class="copy-btn" data-copy="${String(value).replace(/"/g, '&quot;')}" aria-label="${copyAria}">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </button>
+          </div>
+        `;
+      }).join('');
+      card.innerHTML = `
+        <div class="pay-head">
+          <div class="pay-name">
+            <span class="pay-icon">${method.icon}</span>
+            <span>${loc(method.name, LANG)}</span>
+          </div>
+          <span class="pay-tag">${loc(method.tag, LANG)}</span>
+        </div>
+        ${rows}
+      `;
+      grid.appendChild(card);
+    });
+    bindCopyButtons();
+  }
+
+  function bindCopyButtons() {
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy');
+        try { await navigator.clipboard.writeText(text); }
+        catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (_) {}
+          document.body.removeChild(ta);
+        }
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>';
+        }, 1800);
+      });
+    });
+  }
+
+  function renderSignature() {
+    document.getElementById('signature-name').textContent = loc(CONFIG.name, LANG);
+  }
+
+  function renderCountdown() {
+    try {
+      const bday = new Date(CONFIG.birthday + 'T00:00:00');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const diff = Math.round((bday - today) / (1000 * 60 * 60 * 24));
+      let cd;
+      if (diff > 1) cd = `T−${diff} ${t('cd.units')}`;
+      else if (diff === 1) cd = `T−1 ${t('cd.unitsOne')}`;
+      else if (diff === 0) cd = t('cd.today');
+      else cd = t('cd.passed').replace('{d}', Math.abs(diff));
+      document.getElementById('bday-countdown').textContent = cd;
+    } catch (e) {
+      document.getElementById('bday-countdown').textContent = '—';
     }
   }
 
-  // PROGRESS
-  document.getElementById('raised-currency').textContent = CONFIG.currencySymbol;
-  document.getElementById('raised-amount').textContent = CONFIG.amountRaised.toLocaleString('en-US');
-  document.getElementById('goal-amount').textContent = fmt(CONFIG.goal);
-
-  const percent = Math.min(100, (CONFIG.amountRaised / CONFIG.goal) * 100);
-  document.getElementById('percent').textContent = percent.toFixed(1).replace(/\.0$/, '');
-  const remaining = Math.max(0, CONFIG.goal - CONFIG.amountRaised);
-  document.getElementById('remaining').textContent = fmt(remaining);
-  document.getElementById('current-tier-name').innerHTML = currentTier
-    ? currentTier.model.replace(/ /g, '_').toLowerCase()
-    : '<span style="color:var(--text-dim);">пока_нет</span>';
-
-  // Bar fill (delayed for animation)
-  setTimeout(() => {
-    document.getElementById('bar-fill').style.width = percent + '%';
-  }, 200);
-
-  // Bar status text
-  let barStatus = 'ждём первый взнос';
-  if (CONFIG.amountRaised >= CONFIG.goal) {
-    barStatus = 'goal_reached ✓ — каждый $ сверху идёт на апгрейд';
-  } else if (CONFIG.amountRaised > 0) {
-    barStatus = `ещё ${fmt(remaining)} до цели`;
-  }
-  document.getElementById('bar-status').textContent = barStatus;
-
-  // Annotation
-  if (currentTier && nextTier) {
-    document.getElementById('annotation-model').textContent = `доступно сейчас:`;
-    document.getElementById('annotation-text').innerHTML =
-      `<span class="accent">${currentTier.model}</span> — следующий уровень (${nextTier.model}) на ${fmt(nextTier.price)}.`;
-  } else if (currentTier && !nextTier) {
-    document.getElementById('annotation-model').textContent = `макс. уровень достигнут:`;
-    document.getElementById('annotation-text').innerHTML =
-      `<span class="accent">${currentTier.model}</span> — каждый следующий $ идёт на филамент и AMS.`;
-  } else if (nextTier) {
-    document.getElementById('annotation-model').textContent = `первый уровень:`;
-    document.getElementById('annotation-text').innerHTML =
-      `<span class="accent">${nextTier.model}</span> открывается на ${fmt(nextTier.price)}.`;
+  // ----- Apply language (full re-render) -----
+  function applyLang() {
+    renderStatic();
+    renderProgress();
+    renderTiers();
+    renderPayment();
+    renderSignature();
+    renderCountdown();
   }
 
-  // TIERS
-  const tiersGrid = document.getElementById('tiers-grid');
-  sortedTiers.forEach((tier, i) => {
-    const isUnlocked = CONFIG.amountRaised >= tier.price;
-    const isCurrent = currentTier && tier.price === currentTier.price;
-    let cls = 'tier';
-    let badge = 'закрыт';
-    if (isCurrent) { cls += ' current'; badge = 'цель'; }
-    else if (isUnlocked) { cls += ' unlocked'; badge = 'открыт'; }
-    else { cls += ' locked'; }
-
-    const card = document.createElement('div');
-    card.className = cls;
-    card.innerHTML = `
-      <div class="tier-head">
-        <span class="tier-index mono">[ ${String(i+1).padStart(2,'0')} ]</span>
-        <span class="tier-badge">${badge}</span>
-      </div>
-      <div class="tier-model">${tier.model}</div>
-      <div class="tier-price"><span class="currency">${CONFIG.currencySymbol}</span>${tier.price.toLocaleString('en-US')}</div>
-      <div class="tier-desc">${tier.desc}</div>
-      <div class="tier-specs">
-        ${tier.specs.map(s => `<span class="spec-pill">${s}</span>`).join('')}
-      </div>
-    `;
-    tiersGrid.appendChild(card);
-  });
-
-  // PAYMENT
-  const payGrid = document.getElementById('pay-grid');
-  CONFIG.payment.forEach((method) => {
-    const card = document.createElement('div');
-    card.className = 'pay-card';
-    const rows = method.rows.map(r => `
-      <div class="pay-row">
-        <span class="pay-row-label">${r.label}</span>
-        <span class="pay-row-value">${r.value}</span>
-        <button class="copy-btn" data-copy="${r.value.replace(/"/g, '&quot;')}" aria-label="скопировать">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-          </svg>
-        </button>
-      </div>
-    `).join('');
-    card.innerHTML = `
-      <div class="pay-head">
-        <div class="pay-name">
-          <span class="pay-icon">${method.icon}</span>
-          <span>${method.name}</span>
-        </div>
-        <span class="pay-tag">${method.tag}</span>
-      </div>
-      ${rows}
-    `;
-    payGrid.appendChild(card);
-  });
-
-  // Copy to clipboard
-  const toast = document.getElementById('toast');
-  let toastTimer;
-  document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      const text = btn.getAttribute('data-copy');
-      try {
-        await navigator.clipboard.writeText(text);
-      } catch {
-        // fallback for older browsers
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); } catch (_) {}
-        document.body.removeChild(ta);
-      }
-      btn.classList.add('copied');
-      btn.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        toast.classList.remove('show');
-        btn.classList.remove('copied');
-        btn.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>';
-      }, 1800);
+  // ----- Bind lang switch buttons -----
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = btn.dataset.lang;
+      if (next === LANG) return;
+      LANG = next;
+      // sync URL (without reload)
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', LANG);
+      history.replaceState(null, '', url);
+      applyLang();
     });
   });
 
-  // Signature & footer
-  document.getElementById('signature-name').textContent = CONFIG.name;
+  // ----- Footer static -----
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('last-updated').textContent = new Date().toISOString().split('T')[0];
 
-  // Status text variant
-  if (CONFIG.amountRaised >= CONFIG.goal) {
-    document.getElementById('status-text').textContent = 'goal_reached';
-  }
-
-  // Birthday countdown
-  try {
-    const bday = new Date(CONFIG.birthday + 'T00:00:00');
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const diffDays = Math.round((bday - today) / (1000 * 60 * 60 * 24));
-    let cd;
-    if (diffDays > 1) cd = `T−${diffDays} days`;
-    else if (diffDays === 1) cd = `T−1 day`;
-    else if (diffDays === 0) cd = `🎂 today`;
-    else cd = `bday: +${Math.abs(diffDays)}d ago`;
-    document.getElementById('bday-countdown').textContent = cd;
-  } catch (e) {
-    document.getElementById('bday-countdown').textContent = '—';
-  }
+  // ----- Initial render -----
+  applyLang();
 })();
 </script>
 </body>
